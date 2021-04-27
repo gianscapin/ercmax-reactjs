@@ -1,11 +1,20 @@
 import React,{Fragment} from 'react'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import Cart from './CartWidget';
 
-const NavbarComerce = () => {
+const NavbarComerce = ({products, categorySelected, weather}) => {
+
+    const setCategory = (category) =>{
+        let categories = [];
+        categories = products.filter(product => product.type==category);
+        categorySelected(categories);
+    }
+
     return ( 
         <Fragment>
-                <Cart />
+                <Cart 
+                    weather={weather}
+                />
                 <Navbar collapseOnSelect expand="lg" style={{backgroundColor: "#191a1d"}}>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">

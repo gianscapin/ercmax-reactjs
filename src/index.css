@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.weather{
+  color: azure;
+  text-align:center;
+  margin-top: 150px;
+  float:right;
+}
+
+.body-items{
+  background-color: black;
+}
+
+.items{
+  color:white;
+}
