@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Row,Col,Container} from 'react-bootstrap';
 import ItemDetails from './ItemDetails';
+import {ProductsContext} from '../context/ProductsContext';
+const ItemListContainer = () => {
 
-const ItemListContainer = ({products}) => {
+    const {products} = useContext(ProductsContext);
+    
     return ( 
         <Container>
             <Row>

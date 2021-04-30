@@ -1,13 +1,12 @@
-import React,{Fragment, BrowserRouter, Switch, Route, useState, useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import NavbarComerce from './components/Navbar/NavbarComerce';
 import ItemListContainer from './components/container/ItemListContainer';
-import data from './data/data.json';
+import CategoryProducts from './components/container/CategoryProducts';
+import Item from './components/container/Item';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ProductsProvider from './components/context/ProductsContext';
 
 function App() {
-
-  const [products, saveProducts] = useState([]);
-
-  const [category, categorySelected] = useState([]);
 
   const [weather, saveWeather] = useState({
     temperature:'',
@@ -15,8 +14,10 @@ function App() {
     icon:''
   });
 
+
+  
+
   useEffect(()=>{ 
-      saveProducts(data);
       const consultWeather = async () =>{
         const url = 'http://api.weatherstack.com/current?access_key=3f84c6030d6a7e80becdb2e77c3bbffc&query=Buenos%20Aires';
 
@@ -30,24 +31,37 @@ function App() {
 
       }
       consultWeather();
-  },[])
+  },[]);
 
 
   return (
-   <Fragment>
-      <div className="container">
-        <NavbarComerce 
-          products ={products}
-          categorySelected ={categorySelected}
-          weather = {weather}
-        />
-        <div className="body-items">
-          <ItemListContainer 
-            products = {products}
+    <Router>
+      <ProductsProvider>
+        <div className="container">
+          <NavbarComerce 
+            weather = {weather}
           />
-        </div>
-      </div>
-   </Fragment>
+          <Switch>
+            <Route exact path="/">
+              <div className="body-items">
+                <ItemListContainer 
+                />
+              </div>
+            </Route>
+            <Route path="/category/:cat">
+              <div className="body-items">
+                <CategoryProducts 
+                />
+              </div>
+            </Route>
+            <Route path="/items/:id">
+              <Item 
+              />
+            </Route>
+          </Switch>
+          </div>
+        </ProductsProvider>
+    </Router>
   )
 }
 

@@ -121,7 +121,7 @@
 },{
     "id": "0001M",
     "name": "Adata 4GB",
-    "type":"memorie",
+    "type":"memory",
     "capacity": 4096,
     "rate": 2666,
     "latency": 19,
@@ -134,7 +134,7 @@
 }, {
     "id": "0002M",
     "name": "Adata 8GB",
-    "type":"memorie",
+    "type":"memory",
     "capacity": 8192,
     "rate": 3200,
     "latency": 16,
