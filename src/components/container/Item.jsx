@@ -1,18 +1,61 @@
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import { useParams } from 'react-router-dom';
-import {Row,Col,Container} from 'react-bootstrap';
+import {Row,Col,Container, Button} from 'react-bootstrap';
 import {ProductsContext} from '../context/ProductsContext';
+import {CartContext} from '../context/CartContext';
+import styled from 'styled-components';
+
+const Image = styled.img`
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+    width:420px;
+    height:360px;
+    display:block;
+    margin:auto;
+`;
+
+const P = styled.p`
+    color: #007bff;
+`;
 
 const Item = () => {
 
     const {products} = useContext(ProductsContext);
+    const {saveSelection,saveCart,productSelected} = useContext(CartContext);
     
+    const [quantity, saveQuantity] = useState(1);
     const {id} = useParams();
 
     let itemSelected = products.filter(product => product.id === id);
 
     let item = itemSelected[0];
 
+    let productStorage = [];
+
+    const addCart = () => {
+        let itemToCart = {
+            item:{item},
+            quantity:parseInt(quantity)
+        }
+        if(localStorage.getItem('itemSelected')){
+            let array = JSON.parse(localStorage.getItem('itemSelected'));
+            if(array.length>1){
+                array.forEach(product => productStorage.push(product));
+            }else{
+                array.forEach(product => productStorage.push(product));
+            }
+        }
+        if(!(productStorage.find(product => product.item.item.id === itemToCart.item.item.id))){
+            productStorage.push(itemToCart);
+            localStorage.setItem('itemSelected',JSON.stringify(productStorage));
+
+            saveCart(productStorage);
+        }
+        // alerta por si se agregó un item con una id que existe ya en el cart
+        
+    }
 
 
 
@@ -22,52 +65,112 @@ const Item = () => {
         {item ? 
             <Row>
                 <Col>
-                <img
-                    className="img-fluid"
+                <Image
                     src={item.image}
                     alt=""
                 />
                 </Col>
                 <Col>
-                    <h6 className="font-weight-bold mb-3">{item.name}</h6>
-                    <h3 className="font-weight-bold mb-3 p-0">
+                    <P>{item.name}</P>
+                    <P>Marca: </P>
+                    {item.type === 'processor' ?
+                        <div>
+                        <P>Cantidad de núcleos: </P>
+                        <P>Cantidad de hilos: </P>
+                        <P>Nanómetros: </P>
+                        <P>Integrada: </P>
+                        </div>
+                        :null
+                    }
+                    {item.type === 'videocard' ?
+                        <div>
+                        <P>Manufacturero: </P>
+                        <P>Cantidad de memoria: </P>
+                        <P>Tipo de memoria: </P>
+                        <P>Interface: </P>
+                        </div>
+                        :null
+                    }
+                    {item.type === 'memory' ?
+                        <div>
+                        <P>Capacidad: </P>
+                        <P>Ratio: </P>
+                        <P>Latencia: </P>
+                        </div>
+                        :null
+                    }
+                    {item.type === 'cabinet' ?
+                        <div>
+                        <P>Capacidad de coolers: </P>
+                        <P>Coolers incluidos: </P>
+                        <P>Tipo de mother: </P>
+                        </div>
+                        :null
+                    }
+                    <P>Cantidad Deseada</P>
+                    <Button
+                            style={{width:"200%"}}
+                            className="btn-block"
+                            variant="success"
+                            onClick={() => addCart()}
+                    >Añadir al carrito</Button>
+                </Col>
+                <Col>
+                <P>
                     <strong>${item.price}</strong>
-                    </h3>
-                    <p>Marca: <span>{item.brand}</span></p>
-                    {item.type == 'processor' ?
+                </P>
+                <P>{item.brand ? item.brand :item.name}</P>
+                    {item.type === 'processor' ?
                         <div>
-                        <p>Cantidad de núcleos: <span>{item.core}</span></p>
-                        <p>Cantidad de hilos: <span>{item.threads}</span></p>
-                        <p>Nanómetros: <span>{item.nanometters}</span></p>
-                        <p>Integrada: <span>{item.apu}</span></p>
+                        <P><b>{item.core}</b></P>
+                        <P><b>{item.threads}</b></P>
+                        <P><b>{item.nanometters}</b></P>
+                        <P><b>{item.apu?'Si':'No'}</b></P>
                         </div>
                         :null
                     }
-                    {item.type == 'videocard' ?
+                    {item.type === 'videocard' ?
                         <div>
-                        <p>Manufacturero: <span>{item.manufacturer}</span></p>
-                        <p>Cantidad de memoria: <span>{item.memory}</span></p>
-                        <p>Tipo de memoria: <span>{item.typeMemory}</span></p>
-                        <p>Interface: <span>{item.interfaceMemory}</span></p>
+                        <P><b>{item.manufacturer}</b></P>
+                        <P><b>{item.memory}</b></P>
+                        <P><b>{item.typeMemory}</b></P>
+                        <P><b>{item.interfaceMemory}</b></P>
                         </div>
                         :null
                     }
-                    {item.type == 'memory' ?
+                    {item.type === 'memory' ?
                         <div>
-                        <p>Capacidad: <span>{item.capacity}</span></p>
-                        <p>Ratio: <span>{item.rate}</span></p>
-                        <p>Latencia: <span>{item.latency}</span></p>
+                        <P><b>{item.capacity}</b></P>
+                        <P><b>{item.rate}</b></P>
+                        <P><b>{item.latency}</b></P>
                         </div>
                         :null
                     }
-                    {item.type == 'cabinet' ?
+                    {item.type === 'cabinet' ?
                         <div>
-                        <p>Capacidad de coolers: <span>{item.coolersCapacity}</span></p>
-                        <p>Coolers incluidos: <span>{item.coolersIncluded}</span></p>
-                        <p>Tipo de mother: <span>{item.mother}</span></p>
+                        <P><b>{item.coolersCapacity}</b></P>
+                        <P><b>{item.coolersIncluded}</b></P>
+                        <P><b>{item.mother}</b></P>
                         </div>
                         :null
                     }
+
+                    <select
+                        onChange = {e => saveQuantity(e.target.value)}
+                        value = {quantity}
+                    >
+                        <option value="" disabled>Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </Col>
             </Row>
     : <h1>El item buscado no existe.</h1>} 

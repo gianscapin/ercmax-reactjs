@@ -19,8 +19,12 @@ code {
   float:right;
 }
 
-.body-items{
+.body-color{
   background-color: black;
+}
+
+.body-items{
+  background-color: rgb(17, 16, 16);
 }
 
 .items{
@@ -28,6 +32,7 @@ code {
 }
 
 .item-detail{
-  background-color: black;
+  background-color: rgb(24, 24, 24);
 
 }
+
