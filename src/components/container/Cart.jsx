@@ -89,7 +89,7 @@ const Cart = () => {
                         onClick={() => alert('Comprando')}
                     >Comprar</Btn>
                 </Div>
-            ):<p>No hay productos seleccionados</p>}
+            ):<div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>}
         </Fragment>
      );
 }

@@ -8,7 +8,9 @@ const CartWidget = () => {
             <div className="container" style={{backgroundColor: "black"}}>
                 <Row>
                     <Col>
-                        <Image src= {image} alt='logo'/>
+                        <Link to ="/">
+                            <Image src= {image} alt='logo'/>
+                        </Link>
                     </Col>
                     <Col>
                     </Col>

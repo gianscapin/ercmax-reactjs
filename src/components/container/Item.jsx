@@ -52,6 +52,16 @@ const Item = () => {
             localStorage.setItem('itemSelected',JSON.stringify(productStorage));
 
             saveCart(productStorage);
+        }else{
+            productStorage.map(product =>{
+                if(product.item.item.id === itemToCart.item.item.id){
+                    product.quantity++;
+                }
+            })
+
+            localStorage.setItem('itemSelected',JSON.stringify(productStorage));
+
+            saveCart(productStorage);
         }
         // alerta por si se agregó un item con una id que existe ya en el cart
         
@@ -113,7 +123,7 @@ const Item = () => {
                             className="btn-block"
                             variant="success"
                             onClick={() => addCart()}
-                    >Añadir al carrito</Button>
+                    >Terminar compra</Button>
                 </Col>
                 <Col>
                 <P>
@@ -173,7 +183,7 @@ const Item = () => {
                     </select>
                 </Col>
             </Row>
-    : <h1>El item buscado no existe.</h1>} 
+    : <div className="alert alert-danger" role="alert">El item buscado no fue encontrado.</div>} 
     </div>
     );
 }
