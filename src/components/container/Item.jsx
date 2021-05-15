@@ -4,6 +4,7 @@ import {Row,Col,Container, Button} from 'react-bootstrap';
 import {ProductsContext} from '../context/ProductsContext';
 import {CartContext} from '../context/CartContext';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Image = styled.img`
     padding-top:10px;
@@ -16,17 +17,53 @@ const Image = styled.img`
     margin:auto;
 `;
 
+const Btn = styled.button`
+    color: #007BFF !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: solid steelblue;
+    transition: all 1s ease;
+    position: relative;
+    :hover {
+        background: #007BFF;
+        color: #fff !important;
+    }
+`;
+
+const BtnSuccess = styled.button`
+    color: #00ff80 !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: solid springgreen;
+    transition: all 1s ease;
+    position: relative;
+    :hover {
+        background: #00ff80;
+        color: #000000 !important;
+    }
+`;
+
 const P = styled.p`
     color: #007bff;
 `;
 
 const Item = () => {
+    
 
     const {products} = useContext(ProductsContext);
     const {saveSelection,saveCart,productSelected} = useContext(CartContext);
     
     const [quantity, saveQuantity] = useState(1);
     const {id} = useParams();
+
+    const [buttonCart, saveNameButtonCart] = useState({
+        name:'Añadir compra'
+    });
+    const [itemsAdded, saveItemsAdded] = useState(0);
 
     let itemSelected = products.filter(product => product.id === id);
 
@@ -52,10 +89,11 @@ const Item = () => {
             localStorage.setItem('itemSelected',JSON.stringify(productStorage));
 
             saveCart(productStorage);
+            
         }else{
             productStorage.map(product =>{
                 if(product.item.item.id === itemToCart.item.item.id){
-                    product.quantity++;
+                    product.quantity+=itemToCart.quantity;
                 }
             })
 
@@ -64,7 +102,10 @@ const Item = () => {
             saveCart(productStorage);
         }
         // alerta por si se agregó un item con una id que existe ya en el cart
-        
+        saveNameButtonCart({
+            name:'Terminar comprando'
+        });
+        saveItemsAdded(itemsAdded+1);
     }
 
 
@@ -118,12 +159,17 @@ const Item = () => {
                         :null
                     }
                     <P>Cantidad Deseada</P>
-                    <Button
+                    <Btn
                             style={{width:"200%"}}
-                            className="btn-block"
-                            variant="success"
+                            className="mt-2 mb-2"
                             onClick={() => addCart()}
-                    >Terminar compra</Button>
+                    >Añadir al carrito</Btn>
+                    {(itemsAdded>=1)?<div>
+                    <Link to="/cart">
+                    <BtnSuccess
+                            style={{width:"200%"}}
+                            className="mt-2 mb-2"
+                    >{buttonCart.name}</BtnSuccess></Link></div>:null}
                 </Col>
                 <Col>
                 <P>

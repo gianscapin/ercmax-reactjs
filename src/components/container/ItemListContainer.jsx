@@ -1,10 +1,13 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Row,Col,Container} from 'react-bootstrap';
 import ItemDetails from './ItemDetails';
 import {ProductsContext} from '../context/ProductsContext';
+
+
 const ItemListContainer = () => {
 
     const {products} = useContext(ProductsContext);
+    
     
     return ( 
         <Container>
