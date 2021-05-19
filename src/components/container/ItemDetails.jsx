@@ -1,7 +1,31 @@
 import React from 'react';
-import {Card, Button} from 'react-bootstrap';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import {Card} from 'react-bootstrap';
+import styled from 'styled-components';
+
 const ItemDetails = ({product}) => {
+
+    const Btn = styled.a`
+    color: #007bff !important;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: solid #007bff;
+    transition: all 1s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    :hover {
+        background: #007bff;
+        color: #000000 !important;
+    }
+`;
 
 
     const {image, price, name,id} = product;
@@ -15,12 +39,11 @@ const ItemDetails = ({product}) => {
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>${price}</Card.Text>
                 </div>
-                <Button 
-                    variant="primary"
-                    href={`/items/${id}`}
-                >
-                    Ver detalles
-                </Button>
+                    <Btn 
+                        href={`/items/${id}`}
+                    >
+                        Ver detalles
+                    </Btn>
             </Card.Body>
         </Card>
      );

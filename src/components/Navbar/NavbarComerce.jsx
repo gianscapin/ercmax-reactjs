@@ -16,8 +16,8 @@ const NavbarComerce = () => {
                         <Nav.Link href="/category/processor" style={{color: "#4888e9"}}>Procesadores</Nav.Link>
                         <Nav.Link href="/category/videocard" style={{color: "#4888e9"}}>Placas de video</Nav.Link>
                         <Nav.Link href="/category/memory" style={{color: "#4888e9"}}>Memorias Ram</Nav.Link>
-                        <Nav.Link href="#" style={{color: "#4888e9"}}>Motherboards</Nav.Link>
-                        <Nav.Link href="#" style={{color: "#4888e9"}}>Almacenamiento</Nav.Link>
+                        <Nav.Link href="/category/motherboard" style={{color: "#4888e9"}}>Motherboards</Nav.Link>
+                        <Nav.Link href="/category/storage" style={{color: "#4888e9"}}>Almacenamiento</Nav.Link>
                         <Nav.Link href="/category/cabinet" style={{color: "#4888e9"}}>Gabinetes</Nav.Link>
                         <Nav.Link href="#" style={{color: "#4888e9"}}>Notebooks</Nav.Link>
                         <Nav.Link href="#" style={{color: "#4888e9"}}>Nosotros</Nav.Link>

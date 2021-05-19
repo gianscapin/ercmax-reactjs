@@ -1,7 +1,7 @@
 import React, {useContext,Fragment} from 'react';
 import {CartContext} from '../context/CartContext';
-import {Table, Button} from 'react-bootstrap';
-import styled from 'styled-components'
+import {Table} from 'react-bootstrap';
+import styled from 'styled-components';
 
 const Image = styled.img`
     width:140px;
@@ -56,6 +56,62 @@ const BtnBuy = styled.button`
     margin: auto;
     padding-left: 50px;
     padding-right: 50px;
+    :before {
+    content:"";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 0px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 1s ease;
+    }
+    :hover:before {
+        width: 100%;
+    }
+`;
+
+const BtnClean = styled.button`
+    color: #000000 !important;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: #cabc00;
+    border: 2px solid;
+    border-color: #cabc00;
+    position: relative;
+    display: flex;
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    :before {
+    content:"";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 0px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 1s ease;
+    }
+    :hover:before {
+        width: 100%;
+    }
+`;
+
+const BtnIn = styled.a`
+    color: #fff !important;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: #00ca5b;
+    border: 2px solid;
+    border-color: #00ca5b;
+    position: relative;
+    display: flex;
+    margin: auto;
     :before {
     content:"";
         position: absolute;
@@ -128,7 +184,7 @@ const Cart = () => {
                             <tr>
                                 <td colSpan="3"><b>Subtotal</b></td>
                                 <td><b>${calculateSubtotal()}</b></td>
-                                <td><Button variant="outline-warning" onClick={(e) => clear(e)}>Vaciar carrito</Button> </td>
+                                <td><BtnClean variant="outline-warning" onClick={(e) => clear(e)}>Vaciar carrito</BtnClean> </td>
                             </tr>
                         </tfoot>
                     </Table>
@@ -136,7 +192,10 @@ const Cart = () => {
                         onClick={() => alert('Comprando')}
                     >Comprar</BtnBuy>
                 </Div>
-            ):<div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>}
+            ):<div><div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>
+            <BtnIn href='/'>Volver a inicio</BtnIn></div>
+            
+            }
         </Fragment>
      );
 }

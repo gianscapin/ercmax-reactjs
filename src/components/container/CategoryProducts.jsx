@@ -3,10 +3,11 @@ import {Row,Col,Container} from 'react-bootstrap';
 import ItemDetails from './ItemDetails';
 import {useParams} from 'react-router-dom';
 import {ProductsContext} from '../context/ProductsContext';
+import Spinner from '../Spinner/Spinner';
 
 const CategoryProducts = () => {
 
-    const {products} = useContext(ProductsContext);
+    const {products,loading} = useContext(ProductsContext);
     
     const {cat} = useParams();
 
@@ -15,16 +16,18 @@ const CategoryProducts = () => {
 
     return ( 
         <Container>
-            <Row>
-                {category.map(cat =>(
-                    <Col className="mt-5">
-                        <ItemDetails 
-                            key = {cat.id}
-                            product = {cat}
-                        />
-                    </Col>
-                ))}
-            </Row>
+            {loading ? <Spinner/>:(
+                <Row style={{paddingTop:"10px", paddingBottom:"10px"}}>
+                    {category.map(cat =>(
+                        <Col style={{marginTop:"5px",marginBottom:"10px",marginLeft:"5px",marginRight:"5px"}}>
+                            <ItemDetails 
+                                key = {cat.id}
+                                product = {cat}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            )}
         </Container>
      );
 }
