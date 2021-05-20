@@ -137,7 +137,7 @@ const Cart = () => {
         let subtotal;
         let total = 0;
         cartProducts.forEach(product =>{
-            subtotal = product.item.item.price * product.quantity;
+            subtotal = product.item.item.totalPrice * product.quantity;
             total+=subtotal;
         })
         return total;
@@ -175,7 +175,7 @@ const Cart = () => {
                                     <td><Image style={{borderRadius: "0.25em"}} src={productArr.item.item.image}/></td>
                                     <td>{productArr.item.item.name}</td>
                                     <td>{productArr.quantity}</td>
-                                    <td>$ {productArr.item.item.price}</td>
+                                    <td>$ {productArr.item.item.totalPrice}</td>
                                     <td><BtnDelete onClick={() => deleteProduct(productArr.item.item.id)}>Eliminar</BtnDelete></td>
                                 </tr>
                             ))}

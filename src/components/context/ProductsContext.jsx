@@ -11,10 +11,30 @@ const ProductsProvider = (props) => {
 
     const [loading, saveLoading] = useState(false);
 
+    const [salesOff, saveOffers] = useState([]);
+
+    const addTotalPrice = (array) => {
+        let listOffers = array.map(product => {
+            if(product.saleOff>0){
+                return{
+                    ...product,
+                    totalPrice: product.price - (product.price*(product.saleOff/100))
+                }
+            }else{
+                return{
+                    ...product,
+                    totalPrice: product.price
+                }
+            }
+        })
+        return listOffers;
+    }
+
     useEffect(()=>{
 
         const logProducts = async () =>{
             let items = [];
+            let offers = [];
             const db = getFirestore();
             const itemsCollection = db.collection('items');
             /*
@@ -42,26 +62,37 @@ const ProductsProvider = (props) => {
             */
             saveLoading(true);
            let allItems = await itemsCollection.get();
+           let allOffers = await itemsCollection.where('saleOff','>',0).get();
            for (const doc of allItems.docs){
                items.push(doc.data());
            }
 
+           for (const doc of allOffers.docs){
+            offers.push(doc.data());
+            }
+
+
            setTimeout(()=>{
                saveLoading(false);
-               saveProducts(items);
+               saveProducts(addTotalPrice(items));
+               saveOffers(addTotalPrice(offers));
            },500)
         }
-        logProducts();
+        try {
+            logProducts();
+        } catch (error) {
+            console.log(error);
+        }
         
     },[]);
-
 
     return(
         <ProductsContext.Provider
             value={{
                 products,
                 saveItemId,
-                loading
+                loading,
+                salesOff
             }}
         >
             {props.children}

@@ -56,7 +56,7 @@ const Item = () => {
     
 
     const {products,loading} = useContext(ProductsContext);
-    const {saveSelection,saveCart,productSelected} = useContext(CartContext);
+    const {saveCart} = useContext(CartContext);
     
     const [quantity, saveQuantity] = useState(1);
     const {id} = useParams();
@@ -176,7 +176,7 @@ const Item = () => {
                         </Col>
                         <Col>
                         <P>
-                            <strong>${item.price}</strong>
+                            {item.saleOff>0 ? <strong>${item.totalPrice}</strong> : <strong>${item.price}</strong>}
                         </P>
                         <P>{item.brand ? item.brand :item.name}</P>
                             {item.type === 'processor' ?
