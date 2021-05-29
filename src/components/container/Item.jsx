@@ -60,6 +60,7 @@ const Item = () => {
     
     const [quantity, saveQuantity] = useState(1);
     const {id} = useParams();
+    const [itemPage, saveItemPage] = useState({});
 
     const [buttonCart, saveNameButtonCart] = useState({
         name:'Añadir compra'
@@ -69,8 +70,8 @@ const Item = () => {
     let itemSelected = products.filter(product => product.id === id);
 
     let item = itemSelected[0];
-
     let productStorage = [];
+    let stocks = [];
 
     const addCart = () => {
         let itemToCart = {
@@ -108,6 +109,16 @@ const Item = () => {
         });
         saveItemsAdded(itemsAdded+1);
     }
+
+    const returnOptions = (number) =>{
+        let array = [];
+        for (let index = 1; index < number+1; index++) {
+            array.push(index);
+            
+        }
+        return array;
+    }
+
 
 
 
@@ -219,16 +230,13 @@ const Item = () => {
                                 value = {quantity}
                             >
                                 <option value="" disabled>Seleccione</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
+                                {item.stock>0
+                                ?
+                                returnOptions(item.stock).map(number=>(
+                                    <option key={number} value={number}>{number}</option>
+                                ))
+                                :<option value="" disabled>No hay stock</option>}
+                                
                             </select>
                         </Col>
                     </Row>

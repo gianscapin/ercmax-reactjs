@@ -1,5 +1,6 @@
 import React, {useContext,Fragment} from 'react';
 import {CartContext} from '../context/CartContext';
+import {ProductsContext} from '../context/ProductsContext';
 import {Table} from 'react-bootstrap';
 import styled from 'styled-components';
 
@@ -132,6 +133,7 @@ const BtnIn = styled.a`
 const Cart = () => {
 
     const {cartProducts,saveCart,clearCart} = useContext(CartContext);
+    const {buyProducts} = useContext(ProductsContext);
 
     const calculateSubtotal=()=>{
         let subtotal;
@@ -189,11 +191,13 @@ const Cart = () => {
                         </tfoot>
                     </Table>
                     <BtnBuy
-                        onClick={() => alert('Comprando')}
+                        onClick={() => buyProducts(cartProducts)}
                     >Comprar</BtnBuy>
                 </Div>
             ):<div><div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>
-            <BtnIn href='/'>Volver a inicio</BtnIn></div>
+            <BtnIn 
+            href='/'
+            >Volver a inicio</BtnIn></div>
             
             }
         </Fragment>

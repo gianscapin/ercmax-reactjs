@@ -16,6 +16,7 @@ const CartProvider = (props) => {
         localStorage.removeItem('itemSelected');
     }
 
+
     useEffect(() => {
         saveCart(JSON.parse(localStorage.getItem('itemSelected')));
     }, [localStorage.getItem('itemSelected')]);

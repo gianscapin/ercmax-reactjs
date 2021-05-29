@@ -30,6 +30,23 @@ const ProductsProvider = (props) => {
         return listOffers;
     }
 
+    const buyProducts = (array) => {
+        if(window.confirm('Desea comprar estos productos?')){
+            const db = getFirestore();
+            const itemsCollection = db.collection('items');
+            array.forEach(product =>{
+                let stockProduct = product.item.item.stock;
+                itemsCollection.doc(product.item.item.reference).update({
+                    "stock":stockProduct - product.quantity
+                })
+                .then(()=>{
+                    alert('Productos comprados!.');
+                })
+            })
+        }
+    }
+
+
     useEffect(()=>{
 
         const logProducts = async () =>{
@@ -92,7 +109,8 @@ const ProductsProvider = (props) => {
                 products,
                 saveItemId,
                 loading,
-                salesOff
+                salesOff,
+                buyProducts
             }}
         >
             {props.children}
