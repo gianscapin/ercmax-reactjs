@@ -52,6 +52,16 @@ const P = styled.p`
     color: #007bff;
 `;
 
+const PStock = styled.p`
+    background-color: black;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    width:200%;
+    position: relative;
+`;
+
 const Item = () => {
     
 
@@ -172,12 +182,33 @@ const Item = () => {
                                 </div>
                                 :null
                             }
+                            {item.type === 'motherboard' ?
+                                <div>
+                                <P>Cantidad de sata: </P>
+                                <P>Cantidad de usb 2.0: </P>
+                                <P>Cantidad de usb3: </P>
+                                <P>Plataforma: </P>
+                                <P>Factor: </P>
+                                </div>
+                                :null
+                            }
+                            {item.type === 'storage' ?
+                                <div>
+                                <P>Cache: </P>
+                                <P>Capacidad: </P>
+                                <P>Consumo: </P>
+                                <P>Transferencia: </P>
+                                </div>
+                                :null
+                            }
                             <P>Cantidad Deseada</P>
+                            {item.stock>0?(
                             <Btn
-                                    style={{width:"200%"}}
-                                    className="mt-2 mb-2"
-                                    onClick={() => addCart()}
+                            style={{width:"200%"}}
+                            className="mt-2 mb-2"
+                            onClick={() => addCart()}
                             >Añadir al carrito</Btn>
+                            ):<PStock>No hay stock.</PStock>}
                             {(itemsAdded>=1)?<div>
                             <Link to="/cart">
                             <BtnSuccess
@@ -221,6 +252,25 @@ const Item = () => {
                                 <P><b>{item.coolersCapacity}</b></P>
                                 <P><b>{item.coolersIncluded}</b></P>
                                 <P><b>{item.mother}</b></P>
+                                </div>
+                                :null
+                            }
+                            {item.type === 'motherboard' ?
+                                <div>
+                                <P>{item.sata}</P>
+                                <P>{item.usb2}</P>
+                                <P>{item.usb3}</P>
+                                <P>{item.platform}</P>
+                                <P>{item.factor}</P>
+                                </div>
+                                :null
+                            }
+                            {item.type === 'storage' ?
+                                <div>
+                                <P>{item.cache}</P>
+                                <P>{item.capacity} gb</P>
+                                <P>{item.consumption} W</P>
+                                <P>{item.transferency}</P>
                                 </div>
                                 :null
                             }

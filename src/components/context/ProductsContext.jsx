@@ -31,7 +31,6 @@ const ProductsProvider = (props) => {
     }
 
     const buyProducts = (array) => {
-        if(window.confirm('Desea comprar estos productos?')){
             const db = getFirestore();
             const itemsCollection = db.collection('items');
             array.forEach(product =>{
@@ -40,10 +39,9 @@ const ProductsProvider = (props) => {
                     "stock":stockProduct - product.quantity
                 })
                 .then(()=>{
-                    alert('Productos comprados!.');
+                    
                 })
             })
-        }
     }
 
 

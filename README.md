@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# ErcMax Gaming
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  Es un sitio web para la compra de productos de tecnología. Donde se puede armar presupuestos y armar la pc indicada para vos.
+  
+## Home
+La página principal cuenta con la barra de navegación donde se puede ir a cualquier categoría de producto deseada, un carrousel con fotos y un listado de productos que se encuentran en oferta.
 
-## Available Scripts
+### Productos
 
-In the project directory, you can run:
+Los productos se muestran en carta con una foto especificando el nombre y su precio. Para saber más del producto hay que clickear el botón `Ver detalles`.
+ Al ver los detalles del producto, se redireccionará a la ruta `/products/:idProducto` que cuenta con un id único por cada producto.
+ Se mostrarán los detalles del producto correspondiente a la categoría y se puede seleccionar la cantidad deseada para agregar al carrito. Si el producto tiene 5 unidades en stock, habrá opciones para agregar hasta 5. Si no hay unidades en stock el botón usado para agregarlo al carrito es reemplazado por un mensaje comunicando que no hay stock.
+ 
+ ---
+ ## Carrito
+ Al agregar un item al carrito aparecerá en el `header` la imagen de un carrito y la cantidad de productos que hay dentro. Con clickear el carro vas a dirigirte a `/cart`.
+ En la página habrá un listado en forma de tabla donde está especificado el nombre, la cantidad y el precio unitario y el footer de la tabla muestra el precio total. La tabla cuenta con funcionalidad de eliminar el producto si no se desea.
+ En caso de limpiar el carro hay un botón, y si no hay más productos en la tabla se mostrará una alerta comunicando que no hay productos en el carrito.
+ Si se desea continuar con la compra  se hace click en `Continuar compra`, en todo caso hay un botón para volver a la página inicial.
 
-### `npm start`
+---
+## Formulario
+Al hacer click en `Continuar compra` se direcciona a `/formulario` donde se mostrará en la parte izquierda un formulario a completar con datos personales como el **nombre**, el **email** y el **número de teléfono** y del otro lado una listado en forma de tabla del resumen de la compra.
+En caso de que los datos estén incompletos en el formulario o falten campos a completar al hacer click en `Confirmar compra` se mostrará una alerta donde se especifica que los datos son incorrectos.
+Si tenés todos los datos completos y hacés click en el botón para confirmar la compra se agregarán los datos a nuestra base en Firebase y se actualizarán el stock de todos los productos.
+A continuación se te mostrará el código de tu compra.
+ 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Licencia
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[MIT](https://choosealicense.com/licenses/mit/)

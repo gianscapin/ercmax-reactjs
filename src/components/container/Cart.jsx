@@ -1,8 +1,9 @@
 import React, {useContext,Fragment} from 'react';
 import {CartContext} from '../context/CartContext';
-import {ProductsContext} from '../context/ProductsContext';
 import {Table} from 'react-bootstrap';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 const Image = styled.img`
     width:140px;
@@ -11,16 +12,11 @@ const Image = styled.img`
     margin:auto;
 `;
 
+
 const Div = styled.div`
     background-color:#212529;
 `;
 
-const Btn = styled.button`
-    width:90%;
-    transform: translateX(6%);
-    margin-bottom:16px;
-
-`;
 
 const BtnDelete = styled.button`
     color: #ff0037 !important;
@@ -100,6 +96,7 @@ const BtnClean = styled.button`
     }
 `;
 
+
 const BtnIn = styled.a`
     color: #fff !important;
     justify-content: center;
@@ -133,7 +130,6 @@ const BtnIn = styled.a`
 const Cart = () => {
 
     const {cartProducts,saveCart,clearCart} = useContext(CartContext);
-    const {buyProducts} = useContext(ProductsContext);
 
     const calculateSubtotal=()=>{
         let subtotal;
@@ -150,12 +146,16 @@ const Cart = () => {
         products = cartProducts.filter(product => product.item.item.id !==id);
         localStorage.setItem('itemSelected',JSON.stringify(products));
         saveCart(products);
+        if(cartProducts.length<=1){
+            clearCart();
+        }
     }
 
     const clear = (e) =>{
         e.preventDefault();
         clearCart();
     }
+
 
     return ( 
         <Fragment>
@@ -190,17 +190,18 @@ const Cart = () => {
                             </tr>
                         </tfoot>
                     </Table>
+                    <Link to="/form" style={{textDecoration:'none'}}>
                     <BtnBuy
-                        onClick={() => buyProducts(cartProducts)}
-                    >Comprar</BtnBuy>
-                </Div>
-            ):<div><div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>
+                    >Comprar</BtnBuy></Link>
+            </Div>)
+            :<div><div className="alert alert-danger mt-16" role="alert">No hay productos seleccionados.</div>
             <BtnIn 
             href='/'
             >Volver a inicio</BtnIn></div>
             
             }
         </Fragment>
+
      );
 }
  
