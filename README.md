@@ -24,6 +24,14 @@ Al hacer click en `Continuar compra` se direcciona a `/formulario` donde se most
 En caso de que los datos estén incompletos en el formulario o falten campos a completar al hacer click en `Confirmar compra` se mostrará una alerta donde se especifica que los datos son incorrectos.
 Si tenés todos los datos completos y hacés click en el botón para confirmar la compra se agregarán los datos a nuestra base en Firebase y se actualizarán el stock de todos los productos.
 A continuación se te mostrará el código de tu compra.
+
+---
+
+## Arma tu pc a medida
+Esta funcionalidad permite que puedas armar la computadora a medida de lo que vos quieras. Hay muchas opciones y sabemos que es difícil armar la pc, eso puede ayudarte.
+Tenés que elegir la plataforma que querés (Intel o AMD, si elegís Intel tenés que elegir mothers que soporten procesadores intel como los I7, Pentium. Si elegís AMD, tenés que elegir mothers compatibles con los procesadores Ryzen). Luego tenés que seleccionar la mother que se encuentra en stock y el procesador. Si tu procesador tiene una placa de video integrada no es necesario comprarte una placa de video, por eso mismo podés elegir una placa de video o quedar con la del procesador. Más adelante elegimos las memorias ram, el almacenamiento y el gabinete.
+En la izquierda estarán los productos elegidos con su imagen y abajo estará el total del armado.
+Cuando esté el armado completo aparecerá un botón para ir al carrito y continuar la compra.
  
 
 ## Licencia

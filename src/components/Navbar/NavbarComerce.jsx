@@ -19,8 +19,7 @@ const NavbarComerce = () => {
                         <Nav.Link href="/category/motherboard" style={{color: "#4888e9"}}>Motherboards</Nav.Link>
                         <Nav.Link href="/category/storage" style={{color: "#4888e9"}}>Almacenamiento</Nav.Link>
                         <Nav.Link href="/category/cabinet" style={{color: "#4888e9"}}>Gabinetes</Nav.Link>
-                        <Nav.Link href="#" style={{color: "#4888e9"}}>Notebooks</Nav.Link>
-                        <Nav.Link href="#" style={{color: "#4888e9"}}>Nosotros</Nav.Link>
+                        <Nav.Link href="/builder" style={{color: "#4888e9"}}><span style={{fontWeight:"bold"}}>Arma tu PC</span></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
