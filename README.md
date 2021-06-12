@@ -25,6 +25,8 @@ En caso de que los datos estén incompletos en el formulario o falten campos a c
 Si tenés todos los datos completos y hacés click en el botón para confirmar la compra se agregarán los datos a nuestra base en Firebase y se actualizarán el stock de todos los productos.
 A continuación se te mostrará el código de tu compra.
 
+![](https://github.com/gianscapin/ercmax-reactjs/blob/main/compra_producto-2021-06-11_20.49.42.gif)
+
 ---
 
 ## Arma tu pc a medida
