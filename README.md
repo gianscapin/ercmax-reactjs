@@ -32,6 +32,8 @@ Esta funcionalidad permite que puedas armar la computadora a medida de lo que vo
 Tenés que elegir la plataforma que querés (Intel o AMD, si elegís Intel tenés que elegir mothers que soporten procesadores intel como los I7, Pentium. Si elegís AMD, tenés que elegir mothers compatibles con los procesadores Ryzen). Luego tenés que seleccionar la mother que se encuentra en stock y el procesador. Si tu procesador tiene una placa de video integrada no es necesario comprarte una placa de video, por eso mismo podés elegir una placa de video o quedar con la del procesador. Más adelante elegimos las memorias ram, el almacenamiento y el gabinete.
 En la izquierda estarán los productos elegidos con su imagen y abajo estará el total del armado.
 Cuando esté el armado completo aparecerá un botón para ir al carrito y continuar la compra.
+
+![](https://github.com/gianscapin/ercmax-reactjs/blob/main/armado-2021-06-11_20.56.46.gif)
  
 
 ## Licencia
