@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import {Row, Col} from 'react-bootstrap';
-import {ProductsContext} from '../context/ProductsContext';
+import {ProductsContext} from '../Products/ProductsContext';
 import ItemBuilder from './ItemBuilder';
 import styled from 'styled-components';
 import imageAmd from './amd.jpg';
 import imageIntel from './intel.jpg';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../Cart/CartContext';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import DataBuilder from './DataBuilder';
 
 const Div = styled.div`
     background-color:#212529;
@@ -18,6 +19,10 @@ const DivBuilder = styled.div`
     border: snow 1px solid;
     margin-left:10px;
     margin-right:10px;
+`;
+
+const DivBuildComplete = styled.div`
+    margin-top:50%;
 `;
 
 
@@ -34,6 +39,7 @@ const Label = styled.label`
     font-size: 40px;
     margin-bottom:20px;
     text-align: center;
+    display:block;
 `;
 
 const TextBuild = styled.label`
@@ -48,6 +54,13 @@ const Text = styled.h4`
     color: #0d6efd;
     margin-top:10px;
     margin-left:10px;
+`;
+
+const TextPlatform = styled.h4`
+    color: #0d6efd;
+    margin-top:10px;
+    margin-left:10px;
+    text-align:center;
 `;
 
 const TextItem = styled.p`
@@ -206,120 +219,54 @@ const Builder = () => {
             (
                 <Row>
                     <Col>
-                        <Text style={{textAlign:"center"}}>Plataforma: {platform}</Text>
+                        <TextPlatform>Plataforma: {platform}</TextPlatform>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {motherBoard.image?
-                                        <img style={{
-                                            margin: "auto"}} src={motherBoard.image} height="120" width="120" alt="Imagen del motherboard" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Motherboard</Text>
-                                        <TextItem>{motherBoard.name} <SpanPrice>${motherBoard.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {motherBoard?
-                                        <BtnDelete onClick={() => alertItem(motherBoard.id, saveMotherBoard(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                            </Row>
+                            <DataBuilder 
+                                type="Motherboard"
+                                info={motherBoard}
+                                save={saveMotherBoard}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {processor.image?
-                                        <img style={{
-                                            margin: "auto"}} src={processor.image} height="120" width="120" alt="Imagen del procesador" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Procesador</Text>
-                                        <TextItem>{processor.name} <SpanPrice>${processor.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {processor?
-                                        <BtnDelete onClick={() => alertItem(processor.id, saveProcessor(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                            </Row>
+                            <DataBuilder 
+                                type="Procesador"
+                                info={processor}
+                                save={saveProcessor}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {videoCard.image?
-                                        <img style={{
-                                            margin: "auto"}} src={videoCard.image} height="120" width="120" alt="Imagen de la placa de video" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Placa de video</Text>
-                                        <TextItem>{videoCard.name} <SpanPrice>${videoCard.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {videoCard?
-                                        <BtnDelete onClick={() => alertItem(videoCard.id, saveVideo(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                                    
-                            </Row>
+                            <DataBuilder 
+                                type="Placa de video"
+                                info={videoCard}
+                                save={saveVideo}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {memoryRam.image?
-                                        <img style={{
-                                            margin: "auto"}} src={memoryRam.image} height="120" width="120" alt="Imagen de la memoria ram" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Memoria ram</Text>
-                                        <TextItem>{memoryRam.name} <SpanPrice>${memoryRam.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {memoryRam?
-                                        <BtnDelete onClick={() => alertItem(memoryRam.id, saveMemory(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                            </Row>
+                            <DataBuilder 
+                                type="Memoria"
+                                info={memoryRam}
+                                save={saveMemory}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {storage.image?
-                                        <img style={{
-                                            margin: "auto"}} src={storage.image} height="120" width="120" alt="Imagen del almacenamiento" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Almacenamiento</Text>
-                                        <TextItem>{storage.name} <SpanPrice>${storage.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {storage?
-                                        <BtnDelete onClick={() => alertItem(storage.id, saveStorage(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                            </Row>
+                            <DataBuilder 
+                                type="Almacenamiento"
+                                info={storage}
+                                save={saveStorage}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
-                            <Row>
-                                    <Col>
-                                        {cabinet.image?
-                                        <img style={{margin:"auto"}} src={cabinet.image} height="120" width="120" alt="Imagen de la memoria ram" />:null
-                                        }
-                                    </Col>
-                                    <Col>
-                                        <Text>Gabinete</Text>
-                                        <TextItem>{cabinet.name} <SpanPrice>${cabinet.totalPrice}</SpanPrice></TextItem>
-                                    </Col>
-                                    <Col>
-                                        {cabinet?
-                                        <BtnDelete onClick={() => alertItem(cabinet.id, saveCabinet(''))}>Modificar</BtnDelete>
-                                        :null}
-                                    </Col>
-                            </Row>
+                            <DataBuilder 
+                                type="Gabinete"
+                                info={cabinet}
+                                save={saveCabinet}
+                                alertItem = {alertItem}
+                            />
                         </DivBuilder>
                         <DivBuilder>
                         {cartProducts?
@@ -445,14 +392,14 @@ const Builder = () => {
                         </Row>
                         :
                         (
-                            <div style={{marginTop:"50%"}}>
+                            <DivBuildComplete>
                                 <DivBuilder>
-                                    <Label style={{display:"block"}}>Armado completado!</Label>
+                                    <Label>Armado completado!</Label>
                                 </DivBuilder>
                                 <Link to="/cart" style={{textDecoration:'none'}}>
                                     <BtnBuy
                                     >Ir al carrito</BtnBuy></Link>
-                            </div>
+                            </DivBuildComplete>
                         )
                         }
                     </Col>

@@ -51,33 +51,40 @@ const ItemDetails = ({product}) => {
     `;
 
 
+
     const {image, price, name,id,saleOff} = product;
 
     const totalPrice = () =>{
         return (price - (price*saleOff/100));
     }
 
+    const cardStyle = {
+        width:"18rem",
+        display:"block",
+        margin:"auto"
+    }
+
     return ( 
-        <Card bg ="dark" border="primary" style={{ width: '18rem' }} className="text-center">
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <div className="items">
-                    <Card.Title>{name}</Card.Title>
-                    {saleOff>0?
-                    <div>
-                        <TextTotal>${price} </TextTotal><Circle><span> - {saleOff}% OFF</span></Circle>
-                        <TextOffer>${totalPrice()}</TextOffer>
-                    
-                    </div>:<Card.Text>${price}</Card.Text>
-                    }
-                    
-                </div>
-                    <Btn 
-                        href={`/items/${id}`}
-                    >
-                        Ver detalles
-                    </Btn>
-            </Card.Body>
+        <Card bg ="dark" border="primary" className="text-center" style={cardStyle}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <div className="items">
+                        <Card.Title>{name}</Card.Title>
+                        {saleOff>0?
+                        <div>
+                            <TextTotal>${price} </TextTotal><Circle><span> - {saleOff}% OFF</span></Circle>
+                            <TextOffer>${totalPrice()}</TextOffer>
+                        
+                        </div>:<Card.Text>${price}</Card.Text>
+                        }
+                        
+                    </div>
+                        <Btn 
+                            href={`/items/${id}`}
+                        >
+                            Ver detalles
+                        </Btn>
+                </Card.Body>
         </Card>
      );
 }

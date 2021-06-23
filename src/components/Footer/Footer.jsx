@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col,Container} from 'react-bootstrap';
+import {Row,Col} from 'react-bootstrap';
 import styled from 'styled-components';
 
 const Span = styled.span`
@@ -8,7 +8,7 @@ const Span = styled.span`
 
 const Footer = () => {
     return ( 
-        <Container className="body-color">
+        <div className="body-color">
             <Row>
                 <Col>
                         <ul className="nav flex-column text-center">
@@ -61,7 +61,7 @@ const Footer = () => {
                     </div>
                     </div>
             </Row>
-        </Container>
+        </div>
      );
 }
  

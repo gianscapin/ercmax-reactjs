@@ -1,16 +1,16 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import NavbarComerce from './components/Navbar/NavbarComerce';
-import ItemListContainer from './components/container/ItemListContainer';
-import CategoryProducts from './components/container/CategoryProducts';
-import Item from './components/container/Item';
+import ItemListContainer from './components/Items/ItemListContainer';
+import CategoryProducts from './components/Products/CategoryProducts';
+import Item from './components/Items/Item';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ProductsProvider from './components/context/ProductsContext';
-import Cart from './components/container/Cart';
-import FormCart from './components/container/FormCart';
-import Builder from './components/builder/Builder';
-import CartProvider from './components/context/CartContext';
+import ProductsProvider from './components/Products/ProductsContext';
+import Cart from './components/Cart/Cart';
+import FormCart from './components/Cart/Form/FormCart';
+import Builder from './components/Builder/Builder';
+import CartProvider from './components/Cart/CartContext';
 import Footer from './components/Footer/Footer';
-import ClientProvider from './components/context/ClientContext';
+import ClientProvider from './components/Cart/ClientContext';
 
 function App() {
 
@@ -23,7 +23,6 @@ function App() {
       <ClientProvider>
         <CartProvider>
           <ProductsProvider>
-            <div className="container">
               <NavbarComerce 
               />
               <Switch>
@@ -57,7 +56,6 @@ function App() {
                 </Route>
               </Switch>
               <Footer/>
-              </div>
           </ProductsProvider>
         </CartProvider>
       </ClientProvider>

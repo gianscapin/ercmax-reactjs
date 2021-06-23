@@ -1,20 +1,24 @@
 import React, {useState,useContext} from 'react'
 import {Table, Col, Row, Alert} from 'react-bootstrap';
 import styled from 'styled-components';
-import {CartContext} from '../context/CartContext';
-import {ProductsContext} from '../context/ProductsContext';
-import {ClientContext} from '../context/ClientContext';
+import {CartContext} from '../CartContext';
+import {ProductsContext} from '../../Products/ProductsContext';
+import {ClientContext} from '../ClientContext';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import Ticket from './Ticket';
-import Spinner from '../Spinner/Spinner';
+import Ticket from '../Ticket';
+import Spinner from '../../Spinner/Spinner';
 
 
+const DivCol = styled.div`
+    margin-right:10px;
+`;
 
 const ImageResume = styled.img`
     width:70px;
     height:60px;
     display:block;
     margin:auto;
+    border-radius: 0.25em;
 `;
 
 const Div = styled.div`
@@ -123,6 +127,18 @@ const InputClient = styled.input`
     margin: 0 1rem;
     margin-bottom: 20px;
 
+`;
+
+const Resume = styled.h2`
+    color: #0d6efd;
+`;
+
+const TableBackground = styled.div`
+    border: grey 2px solid;
+`;
+
+const TotalPrice = styled.h3`
+    color: #0d6efd;
 `;
 
 const FormCart = () => {
@@ -252,32 +268,34 @@ const FormCart = () => {
                                 >Confirmar compra</BtnBuy>
                             </form>
                         </Col>
-                        <Col style={{marginRight:"10px"}}>
-                            <h2 style={{color: "#0d6efd"}}>RESUMEN DEL PEDIDO</h2>
-                            <div style={{border: "grey 2px solid"}}>
-                                <Table responsive variant="dark">
-                                    <tbody>
-                                        {cartProducts.map(productArr =>(
-                                            <tr key={productArr.item.item.id}>
-                                                <td><ImageResume style={{borderRadius: "0.25em"}} src={productArr.item.item.image}/></td>
-                                                <td>{productArr.item.item.name}</td>
-                                                <td>{productArr.quantity}</td>
-                                                <td>$ {productArr.item.item.totalPrice}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
+                        <Col>
+                            <DivCol>
+                                <Resume>RESUMEN DEL PEDIDO</Resume>
+                                <TableBackground>
+                                    <Table responsive variant="dark">
+                                        <tbody>
+                                            {cartProducts.map(productArr =>(
+                                                <tr key={productArr.item.item.id}>
+                                                    <td><ImageResume src={productArr.item.item.image}/></td>
+                                                    <td>{productArr.item.item.name}</td>
+                                                    <td>{productArr.quantity}</td>
+                                                    <td>$ {productArr.item.item.totalPrice}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
 
-                                        
-                                </Table>
-                            </div>
-                            <DivTotal>
-                                <h3 style={{color: "#0d6efd"}}>TOTAL:</h3>
-                                <h3 style={{color: "#0d6efd"}}><b>${calculateSubtotal()}</b></h3>
-                            </DivTotal>
-                            <Link to ='/cart' style={{textDecoration:'none'}}>
-                            <BtnClean 
-                                variant="outline-warning" 
-                            >Volver al carrito</BtnClean></Link>
+                                            
+                                    </Table>
+                                </TableBackground>
+                                <DivTotal>
+                                    <TotalPrice>TOTAL:</TotalPrice>
+                                    <TotalPrice><b>${calculateSubtotal()}</b></TotalPrice>
+                                </DivTotal>
+                                <Link to ='/cart' style={{textDecoration:'none'}}>
+                                <BtnClean 
+                                    variant="outline-warning" 
+                                >Volver al carrito</BtnClean></Link>
+                            </DivCol>
                         </Col>
                     </Row>
                     <br/>

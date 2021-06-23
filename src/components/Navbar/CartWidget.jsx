@@ -2,7 +2,12 @@ import React,{useContext} from 'react'
 import image from './ercmaxLogo.png';
 import {Row, Col, Image} from 'react-bootstrap';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import {CartContext} from '../context/CartContext';
+import {CartContext} from '../Cart/CartContext';
+import styled from 'styled-components';
+
+const DivContainer = styled.div`
+    background-color: black;
+`;
 
 const CartWidget = () => {
 
@@ -17,7 +22,7 @@ const CartWidget = () => {
     }
     return ( 
         <React.Fragment>
-            <div className="container" style={{backgroundColor: "black"}}>
+            <DivContainer>
                 <Row>
                     <Col>
                         <Link to ="/">
@@ -40,7 +45,7 @@ const CartWidget = () => {
                         </div>
                     </Col>
                 </Row>
-            </div>
+            </DivContainer>
         </React.Fragment>
      );
 }

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Card} from 'react-bootstrap';
 import styled from 'styled-components';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../Cart/CartContext';
 
 const ItemBuilder = ({product, saveType}) => {
 
@@ -62,7 +62,7 @@ const ItemBuilder = ({product, saveType}) => {
     `;
 
 
-    const {image, price, name,id,saleOff} = product;
+    const {image, price, name,saleOff} = product;
 
     const totalPrice = () =>{
         return (price - (price*saleOff/100));
@@ -123,7 +123,8 @@ const ItemBuilder = ({product, saveType}) => {
     const itemStyle = {
         width: "10rem",
         display: "block",
-        margin: "auto"
+        margin: "auto",
+        marginBottom:"10px"
     }
 
     return ( 

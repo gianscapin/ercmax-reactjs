@@ -1,8 +1,8 @@
 import React,{useContext,useState} from 'react';
 import { useParams } from 'react-router-dom';
-import {Row,Col,Container, Button} from 'react-bootstrap';
-import {ProductsContext} from '../context/ProductsContext';
-import {CartContext} from '../context/CartContext';
+import {Row,Col} from 'react-bootstrap';
+import {ProductsContext} from '../Products/ProductsContext';
+import {CartContext} from '../Cart/CartContext';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Spinner from '../Spinner/Spinner';
@@ -27,6 +27,7 @@ const Btn = styled.button`
     border: solid steelblue;
     transition: all 1s ease;
     position: relative;
+    width:200%;
     :hover {
         background: #007BFF;
         color: #fff !important;
@@ -42,6 +43,7 @@ const BtnSuccess = styled.button`
     border: solid springgreen;
     transition: all 1s ease;
     position: relative;
+    width:200%;
     :hover {
         background: #00ff80;
         color: #000000 !important;
@@ -204,7 +206,6 @@ const Item = () => {
                             <P>Cantidad Deseada</P>
                             {item.stock>0?(
                             <Btn
-                            style={{width:"200%"}}
                             className="mt-2 mb-2"
                             onClick={() => addCart()}
                             >Añadir al carrito</Btn>
@@ -212,7 +213,6 @@ const Item = () => {
                             {(itemsAdded>=1)?<div>
                             <Link to="/cart">
                             <BtnSuccess
-                                    style={{width:"200%"}}
                                     className="mt-2 mb-2"
                             >{buttonCart.name}</BtnSuccess></Link></div>:null}
                         </Col>

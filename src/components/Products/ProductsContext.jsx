@@ -1,5 +1,4 @@
 import React,{createContext, useState, useEffect} from 'react';
-import data from '../../data/data.json';
 import {getFirestore} from '../../firebase';
 
 export const ProductsContext = createContext();

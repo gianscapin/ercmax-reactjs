@@ -1,15 +1,30 @@
-import React, {useContext, useEffect,Fragment} from 'react';
+import React, {useContext,Fragment} from 'react';
 import {Row,Col,Container,Carousel} from 'react-bootstrap';
 import ItemDetails from './ItemDetails';
-import {ProductsContext} from '../context/ProductsContext';
+import {ProductsContext} from '../Products/ProductsContext';
 import Spinner from '../Spinner/Spinner';
-import image1 from '../../imagen1.jpg';
-import image2 from '../../imagen2.jpg';
-import image3 from '../../imagen3.jpg';
+import image1 from '../../images/imagen1.jpg';
+import image2 from '../../images/imagen2.jpg';
+import image3 from '../../images/imagen3.jpg';
+import styled from 'styled-components';
+
+
+const DivRow = styled.div`
+    padding-top:10px;
+    padding-bottom:10px;
+`;
+
+const ColRow = styled.div`
+    margin-top:5px;
+    margin-bottom:10px;
+    margin-left:5px;
+    margin-right:5px;
+`;
 
 const ItemListContainer = () => {
 
     const {salesOff,loading} = useContext(ProductsContext);
+
     
     
     return ( 
@@ -41,16 +56,20 @@ const ItemListContainer = () => {
 
                         </Carousel.Item>
                     </Carousel>
-                    <Row style={{paddingTop:"10px", paddingBottom:"10px"}}>
-                        {salesOff.map(product =>(
-                            <Col style={{marginTop:"5px",marginBottom:"10px",marginLeft:"5px",marginRight:"5px"}} key={product.id}>
-                                <ItemDetails 
-                                    key = {product.id}
-                                    product = {product}
-                                />
-                            </Col>
-                        ))}
-                    </Row>
+                    <DivRow>
+                        <Row>
+                            {salesOff.map(product =>(
+                                <Col key={product.id}>
+                                    <ColRow>
+                                        <ItemDetails 
+                                            key = {product.id}
+                                            product = {product}
+                                        />
+                                    </ColRow>
+                                </Col>
+                            ))}
+                        </Row>
+                    </DivRow>
                 </Fragment>
             )}
         </Container>

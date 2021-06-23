@@ -1,6 +1,6 @@
-import React, {useContext,Fragment} from 'react';
-import {CartContext} from '../context/CartContext';
-import {Table} from 'react-bootstrap';
+import React, {useContext,Fragment,useEffect} from 'react';
+import {CartContext} from './CartContext';
+import {Table, ButtonGroup, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -129,7 +129,12 @@ const BtnIn = styled.a`
 
 const Cart = () => {
 
+    
+
     const {cartProducts,saveCart,clearCart} = useContext(CartContext);
+
+
+    
 
     const calculateSubtotal=()=>{
         let subtotal;
@@ -156,6 +161,40 @@ const Cart = () => {
         clearCart();
     }
 
+    const decrementQuantity = (productArr) => {
+        let idProduct = productArr.item.item.id;
+        if(productArr.quantity>=2){
+            productArr.quantity--;
+        }
+
+        let products = [];
+        products = cartProducts.filter(product => product.item.item.id !==idProduct);
+        products.push(productArr);
+        localStorage.setItem('itemSelected',JSON.stringify(products));
+        saveCart(products);
+        
+
+    }
+
+    const incrementQuantity = (productArr) => {
+        let idProduct = productArr.item.item.id;
+        if(productArr.quantity<productArr.item.item.stock){
+            productArr.quantity++;
+        }
+
+        let products = [];
+        products = cartProducts.filter(product => product.item.item.id !==idProduct);
+        products.push(productArr);
+        
+        localStorage.setItem('itemSelected',JSON.stringify(products));
+        saveCart(products);
+
+    }
+
+    useEffect(()=>{
+    },[cartProducts]);
+
+
 
     return ( 
         <Fragment>
@@ -176,7 +215,13 @@ const Cart = () => {
                                 <tr key={productArr.item.item.id}>
                                     <td><Image style={{borderRadius: "0.25em"}} src={productArr.item.item.image}/></td>
                                     <td>{productArr.item.item.name}</td>
-                                    <td>{productArr.quantity}</td>
+                                    <td>
+                                        <ButtonGroup aria-label="Basic example">
+                                            <Button variant="secondary" onClick={() => decrementQuantity(productArr)}>-</Button>
+                                            <Button variant="secondary" disabled>{productArr.quantity}</Button>
+                                            <Button variant="secondary" onClick={() => incrementQuantity(productArr)}>+</Button>
+                                        </ButtonGroup>
+                                    </td>
                                     <td>$ {productArr.item.item.totalPrice}</td>
                                     <td><BtnDelete onClick={() => deleteProduct(productArr.item.item.id)}>Eliminar</BtnDelete></td>
                                 </tr>
