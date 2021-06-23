@@ -35,7 +35,7 @@ Tenés que elegir la plataforma que querés (Intel o AMD, si elegís Intel tené
 En la izquierda estarán los productos elegidos con su imagen y abajo estará el total del armado.
 Cuando esté el armado completo aparecerá un botón para ir al carrito y continuar la compra.
 
-![](https://github.com/gianscapin/ercmax-reactjs/blob/main/armado-2021-06-11_20.56.46.gif)
+![](https://github.com/gianscapin/ercmax-reactjs/blob/main/Armado-2021-06-23_01.11.44.gif)
  
 
 ## Licencia
